@@ -1,0 +1,17 @@
+For this assignment, I used mkdir to make a new folder to place all the IDs in.
+
+1. cut -f2 amazon_file | sort | uniq -c | sort -rn | awk '{print $2}' | head -10 > TOP1K.txt 
+This was used to find the top customerID who reviewed the most. 
+
+
+2. for custID in $(cat TOP1K.txt); do echo > "$custID".txt; done
+This line took all the top users in the TOP1K file and made a .txt file for each customer ID.
+
+3. for REVIEWS in $(cat *.txt); do grep "$REVIEWS" amazon_file > $REVIEWS".txt; done
+Here, the line looped through all files that ended in .txt and grepped the IDs of the customer before printing them inside
+the text files for each.
+
+
+NOTE: I used a smaller sample size of 10 instead of 1000 as it was much quicker and since 1000 would take way too long to load for my 
+computer under these lines. 
+
